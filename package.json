@@ -8,9 +8,14 @@
   },
   "author": "",
   "dependencies": {
+    "connect-flash": "^0.1.1",
+    "connect-session-knex": "^1.0.22",
     "insane": "^2.5.0",
     "knex": "^0.10.0",
-    "koa": "^1.2.0"
+    "koa": "^1.2.0",
+    "koa-flash": "^1.0.0",
+    "koa-generic-session": "^1.10.2",
+    "koa-mysql-session": "0.0.2"
   },
   "devDependencies": {
     "sass": "^0.5.0",

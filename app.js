@@ -1,9 +1,19 @@
-const http         = require('http'),
-      fs           = require('fs'),
-      path         = require('path'),
-      contentTypes = require('./utils/content-types'),
-      sysInfo      = require('./utils/sys-info'),
-      env          = process.env;
+if (!process.env.SQL_HOST) {
+  const env = require('./env');
+}
+
+var koa = require('koa'),
+    app = koa();
+const 
+      sqlConfig        = require('./sqlConfig'),
+      api              = require('./controllers/api'),
+      routes           = require('./controllers/routes'),
+      flash            = require('koa-flash'),
+      knex             = require('knex')(sqlConfig),
+      session          = require('koa-generic-session'),
+      KnexSessionStore = require('connect-session-knex')(session),
+      sessionStore     = new KnexSessionStore({ tablename: 'sessions', knex: knex }),
+      env              = process.env;
 
 let server = http.createServer(function (req, res) {
   let url = req.url;
